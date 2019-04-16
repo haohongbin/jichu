@@ -1,13 +1,19 @@
 package com.vince;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Set接口
  * 1、无序的（不保证顺序）
  * 2、不允许重复
  * HashSet、TreeSet、LinkedHashSet
+ *
+ * 如果要排序，选择TreeSet
+ * 如果不要排序，也不用保证顺序，选择HashSet
+ * 不要排序，要保证顺序，选择LinkedHashSet
  */
 public class SetDemo {
 
@@ -62,8 +68,49 @@ public class SetDemo {
 
     }
 
+    /**
+     * 有序的，基于TreeMap(二叉树数据结构)，对象需要比较大小，通过对象比较器来实现
+     * 对象比较器还可以用来去除重复元素，如果自定义的数据类，没有实现比较器接口，将无法添加到TreeSet集合中
+     */
+    private static void treeSet(){
+        Set<Cat> cats=new TreeSet<Cat>(new CatComparator());
+        Cat c1=new Cat("miaomiao",5,1);
+        Cat c2=new Cat("miaomiao2",2,2);
+        Cat c3=new Cat("miaomiao3",5,1);
+        Cat c4=new Cat("miaomiao",3,1);
+        cats.add(c1);
+        cats.add(c2);
+        cats.add(c3);
+        cats.add(c4);
+        System.out.println(cats.size());
+        for(Cat cat:cats){
+            System.out.println(cat);
+        }
+    }
+
+    /**
+     * 哈希表和链接列表实现,
+     * 维护着一个运行于所有条目的双重链接列表。此链接列表定义了迭代顺序，即按照将元素插入到set中的顺序（插入顺序）进行迭代。
+     */
+    private static void linkedHashSet(){
+        LinkedHashSet<Cat> cats=new LinkedHashSet<Cat>();
+        Cat c1=new Cat("miaomiao",5,1);
+        Cat c2=new Cat("miaomiao2",2,2);
+        Cat c3=new Cat("miaomiao3",5,1);
+        Cat c4=new Cat("miaomiao",3,1);
+        cats.add(c1);
+        cats.add(c2);
+        cats.add(c3);
+        cats.add(c4);
+        System.out.println(cats.size());
+        for(Cat cat:cats){
+            System.out.println(cat);
+        }
+    }
 
     public static void main(String[] args){
-        hashSet();
+//        hashSet();
+//        treeSet();
+        linkedHashSet();
     }
 }

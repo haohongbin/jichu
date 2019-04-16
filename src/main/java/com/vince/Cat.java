@@ -1,6 +1,5 @@
 package com.vince;
 
-import java.util.Objects;
 
 public class Cat {
     private String name;
